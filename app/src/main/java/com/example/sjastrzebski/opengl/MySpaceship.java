@@ -2,8 +2,10 @@ package com.example.sjastrzebski.opengl;
 
 
 import android.content.Context;
+import android.nfc.Tag;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
+import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -125,14 +127,14 @@ class MySpaceship {
     public void update(float sensorValue) {
         float multipier = 1.0f / 10;
 
-        if (thebTouchOn) {
-            if (sensorValue < 0) {
+        Log.d("sensorValue",String.valueOf(sensorValue));
+            if (sensorValue < -1) {
                 thefPositionX += thefSpeed + sensorValue*multipier;
-            } else {
+            } else if (sensorValue > 1) {
                 thefPositionX -= thefSpeed + sensorValue*multipier;
             }
             thefPositionX = Math.min(0.8f, Math.max(-0.8f, thefPositionX));
-        }
+
     }
 
     public void update(double adCurrentTime, double adElapsedTime, float sensorValue) {
