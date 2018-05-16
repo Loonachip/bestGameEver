@@ -15,15 +15,17 @@ public class GameController  implements SensorEventListener {
     Sensor accelerometer2;
     Game game;
 
+    protected MySpaceship theMySpaceship;
+
     public vector3f xvalue;
     public vector3f xxvalue;
 
-    public GameController(Context context, Game game){
+    public GameController(Context context, MySpaceship ship){
         Log.d(TAG, "OnCreate: Initializing Sensor Services");
         sensorManager=(SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         sensorManager2=(SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 
-        this.game = game;
+        this.theMySpaceship = ship;
 
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         accelerometer2 = sensorManager2.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
@@ -40,7 +42,11 @@ public class GameController  implements SensorEventListener {
                 + "Y: " + sensorEvent.values[1]
                 + "z: " + sensorEvent.values[2]);
 
-        game.cam.setCameraAngle(sensorEvent.values[0]);
+        xvalue = new vector3f(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);
+
+        theMySpaceship.update(xvalue.x);
+
+        //game.cam.setCameraAngle(sensorEvent.values[0]);
     }
 
     @Override

@@ -121,9 +121,23 @@ class MySpaceship {
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);
     }
 
-    public void update(double adCurrentTime, double adElapsedTime, float sensorValue) {
+
+    public void update(float sensorValue) {
         float multipier = 1.0f / 10;
 
+        if (thebTouchOn) {
+            if (sensorValue < 0) {
+                thefPositionX += thefSpeed + sensorValue*multipier;
+            } else {
+                thefPositionX -= thefSpeed + sensorValue*multipier;
+            }
+            thefPositionX = Math.min(0.8f, Math.max(-0.8f, thefPositionX));
+        }
+    }
+
+    public void update(double adCurrentTime, double adElapsedTime, float sensorValue) {
+        float multipier = 1.0f / 10;
+/*
         if (thebTouchOn) {
             if (sensorValue < 0) {
                 thefPositionX += adElapsedTime * thefSpeed + sensorValue*multipier;
@@ -131,9 +145,9 @@ class MySpaceship {
                 thefPositionX -= adElapsedTime * thefSpeed + sensorValue*multipier;
             }
             thefPositionX = Math.min(0.8f, Math.max(-0.8f, thefPositionX));
-        }
+        }*/
 
-        /*
+
         if (thebTouchOn) {
             if (thefPositionX < thefTouchX) {
                 thefPositionX += adElapsedTime * thefSpeed;
@@ -141,7 +155,7 @@ class MySpaceship {
                 thefPositionX -= adElapsedTime * thefSpeed;
             }
             thefPositionX = Math.min(0.8f, Math.max(-0.8f, thefPositionX));
-        }*/
+        }
     }
 
     public void touchOn(float x, float y) {

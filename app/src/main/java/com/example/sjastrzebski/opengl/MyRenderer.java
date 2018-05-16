@@ -10,6 +10,9 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MyRenderer implements GLSurfaceView.Renderer {
 
+    private Game game;
+    private GameController gc;
+
     protected Context theContext;
 
     protected long thelStartTime;
@@ -27,6 +30,8 @@ public class MyRenderer implements GLSurfaceView.Renderer {
         // Set the background frame color
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
         GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+
+        gc = new GameController(theContext, theMySpaceship);
 
         theMyBackground = new MyBackground(theContext);
         theMySpaceship = new MySpaceship(theContext);
@@ -51,7 +56,7 @@ public class MyRenderer implements GLSurfaceView.Renderer {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
         theMyBackground.update(adCurrentTime, adElapsedTime);
-        theMySpaceship.update(adCurrentTime, adElapsedTime);
+        //theMySpaceship.update(adCurrentTime, adElapsedTime, game.cam.getCameraAngle());
 
         theMyBackground.drawShape();
 

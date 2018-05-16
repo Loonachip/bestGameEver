@@ -24,13 +24,17 @@ public class GameRenderer  implements GLSurfaceView.Renderer  {
 
     public GameRenderer(Context c){
         this.context = c;
-        this.gameController = new GameController(context, game);
+        theMyBackground = new MyBackground(theContext);
+        theMySpaceship = new MySpaceship(theContext);
+        this.gameController = new GameController(context, theMySpaceship);
     }
 
     public GameRenderer(Context c, Game g){
         this.context = c;
         this.game = g;
-        this.gameController = new GameController(context, game);
+        theMyBackground = new MyBackground(theContext);
+        theMySpaceship = new MySpaceship(theContext);
+        this.gameController = new GameController(context, theMySpaceship);
     }
 
     @Override
@@ -38,9 +42,6 @@ public class GameRenderer  implements GLSurfaceView.Renderer  {
         // Set the background frame color
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
         GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-
-        theMyBackground = new MyBackground(theContext);
-        theMySpaceship = new MySpaceship(theContext);
 
         thelStartTime = System.nanoTime();
         thedLastTimestep = 0.0;
