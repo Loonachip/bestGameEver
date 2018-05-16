@@ -1,5 +1,6 @@
 package com.example.sjastrzebski.opengl;
 
+
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -7,8 +8,8 @@ import android.opengl.GLSurfaceView;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-public class GameRenderer  implements GLSurfaceView.Renderer  {
-    /////
+public class MyRenderer implements GLSurfaceView.Renderer {
+
     protected Context theContext;
 
     protected long thelStartTime;
@@ -16,25 +17,13 @@ public class GameRenderer  implements GLSurfaceView.Renderer  {
 
     protected MyBackground theMyBackground;
     protected MySpaceship theMySpaceship;
-    /////
 
-    private Context context;
-    private GameController gameController;
-    private Game game;
-
-    public GameRenderer(Context c){
-        this.context = c;
-        this.gameController = new GameController(context, game);
-    }
-
-    public GameRenderer(Context c, Game g){
-        this.context = c;
-        this.game = g;
-        this.gameController = new GameController(context, game);
+    public MyRenderer(Context aContext) {
+        theContext = aContext;
     }
 
     @Override
-    public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
+    public void onSurfaceCreated(GL10 unused, EGLConfig eglConfig) {
         // Set the background frame color
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
         GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
@@ -44,19 +33,15 @@ public class GameRenderer  implements GLSurfaceView.Renderer  {
 
         thelStartTime = System.nanoTime();
         thedLastTimestep = 0.0;
-        //this.clearBuffers();
-
-        // TODO: initialise game objects here
-
     }
 
     @Override
-    public void onSurfaceChanged(GL10 gl10, int i, int i1) {
-
+    public void onSurfaceChanged(GL10 unused, int anWidth, int anHeight) {
+        GLES20.glViewport(0, 0, anWidth, anHeight);
     }
 
     @Override
-    public void onDrawFrame(GL10 gl10) {
+    public void onDrawFrame(GL10 unused) {
         long alCurrentTime = System.nanoTime() - thelStartTime;
         double adCurrentTime = (1e-9) * alCurrentTime;  //ns to sec
         double adElapsedTime = adCurrentTime - thedLastTimestep;
@@ -66,7 +51,7 @@ public class GameRenderer  implements GLSurfaceView.Renderer  {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
         theMyBackground.update(adCurrentTime, adElapsedTime);
-        theMySpaceship.update(adCurrentTime, adElapsedTime, gameController.xvalue.x);
+        theMySpaceship.update(adCurrentTime, adElapsedTime);
 
         theMyBackground.drawShape();
 
@@ -76,20 +61,6 @@ public class GameRenderer  implements GLSurfaceView.Renderer  {
 
 
         thedLastTimestep = adCurrentTime;
-        //this.clearBuffers();
-
-        //game.cam.setCameraAngle(game.cam.getCameraAngle() + 1);
-        //game.cam.setCameraAngle(gameController.xvalue.x);
-        // TODO: draw objects here
-
-    }
-
-    private void clearBuffers(){
-        // Set the background frame color
-        GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-        // clear depth buffer and colour buffer
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
     }
 
     public void touchOn(float x, float y) {
