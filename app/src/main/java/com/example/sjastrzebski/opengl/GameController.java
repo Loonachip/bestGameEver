@@ -13,14 +13,17 @@ public class GameController  implements SensorEventListener {
     private SensorManager sensorManager2;
     Sensor accelerometer;
     Sensor accelerometer2;
+    Game game;
 
     public vector3f xvalue;
     public vector3f xxvalue;
 
-    public GameController(Context context){
+    public GameController(Context context, Game game){
         Log.d(TAG, "OnCreate: Initializing Sensor Services");
         sensorManager=(SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         sensorManager2=(SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+
+        this.game = game;
 
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         accelerometer2 = sensorManager2.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
@@ -37,8 +40,7 @@ public class GameController  implements SensorEventListener {
                 + "Y: " + sensorEvent.values[1]
                 + "z: " + sensorEvent.values[2]);
 
-        xvalue.set(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);
-        xxvalue.set(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);
+        game.cam.setCameraAngle(sensorEvent.values[0]);
     }
 
     @Override

@@ -14,13 +14,14 @@ public class GameRenderer  implements GLSurfaceView.Renderer  {
 
     public GameRenderer(Context c){
         this.context = c;
-        this.gameController = new GameController(context);
+        this.gameController = new GameController(context, game);
     }
 
-    /*public GameRenderer(Context c, Game g){
+    public GameRenderer(Context c, Game g){
         this.context = c;
         this.game = g;
-    }*/
+        this.gameController = new GameController(context, game);
+    }
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
@@ -41,7 +42,7 @@ public class GameRenderer  implements GLSurfaceView.Renderer  {
 
         // TODO: tutaj jebnij setowanie kąta kamery
         //game.cam.setCameraAngle(game.cam.getCameraAngle() + 1);
-        game.cam.setCameraAngle(gameController.xvalue.x);
+        //game.cam.setCameraAngle(gameController.xvalue.x);
         // TODO: draw objects here
 
     }
