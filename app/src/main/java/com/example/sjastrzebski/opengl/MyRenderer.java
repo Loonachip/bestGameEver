@@ -31,10 +31,10 @@ public class MyRenderer implements GLSurfaceView.Renderer {
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
         GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 
+        theMySpaceship = new MySpaceship(theContext);
         gc = new GameController(theContext, theMySpaceship);
 
         theMyBackground = new MyBackground(theContext);
-        theMySpaceship = new MySpaceship(theContext);
 
         thelStartTime = System.nanoTime();
         thedLastTimestep = 0.0;

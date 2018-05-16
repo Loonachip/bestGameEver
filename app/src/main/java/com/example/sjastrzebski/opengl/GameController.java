@@ -15,7 +15,7 @@ public class GameController  implements SensorEventListener {
     Sensor accelerometer2;
     Game game;
 
-    protected MySpaceship theMySpaceship;
+    protected MySpaceship theMySpaceship = null;
 
     public vector3f xvalue;
     public vector3f xxvalue;
@@ -44,7 +44,8 @@ public class GameController  implements SensorEventListener {
 
         xvalue = new vector3f(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);
 
-        theMySpaceship.update(xvalue.x);
+        if(theMySpaceship != null)
+            theMySpaceship.update(xvalue.x);
 
         //game.cam.setCameraAngle(sensorEvent.values[0]);
     }
