@@ -9,16 +9,18 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class GameRenderer  implements GLSurfaceView.Renderer  {
     private Context context;
+    private GameController gameController;
     private Game game;
 
     public GameRenderer(Context c){
         this.context = c;
+        this.gameController = new GameController(context);
     }
 
-    public GameRenderer(Context c, Game g){
+    /*public GameRenderer(Context c, Game g){
         this.context = c;
         this.game = g;
-    }
+    }*/
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
@@ -38,8 +40,8 @@ public class GameRenderer  implements GLSurfaceView.Renderer  {
         this.clearBuffers();
 
         // TODO: tutaj jebnij setowanie kąta kamery
-        game.cam.setCameraAngle(game.cam.getCameraAngle() + 1);
-
+        //game.cam.setCameraAngle(game.cam.getCameraAngle() + 1);
+        game.cam.setCameraAngle(gameController.xvalue.x);
         // TODO: draw objects here
 
     }

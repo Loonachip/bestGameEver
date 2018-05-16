@@ -35,4 +35,10 @@ public class vector3f {
         this.z = 0.0f;
     }
 
+    public void set(float x, float y, float z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
 }
