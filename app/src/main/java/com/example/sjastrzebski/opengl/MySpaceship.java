@@ -31,7 +31,7 @@ class MySpaceship {
     protected boolean thebTouchOn;
     protected float thefPositionX;
     protected float thefTouchX, thefTouchY;
-    protected float thefSpeed = 0.6f;
+    public float thefSpeed = 0.6f;
 
     private final String thestrVertexShaderCode =
             "attribute vec4 vPosition;\n"
@@ -138,18 +138,7 @@ class MySpaceship {
     }
 
     public void update(double adCurrentTime, double adElapsedTime, float sensorValue) {
-        float multipier = 1.0f / 10;
-/*
-        if (thebTouchOn) {
-            if (sensorValue < 0) {
-                thefPositionX += adElapsedTime * thefSpeed + sensorValue*multipier;
-            } else {
-                thefPositionX -= adElapsedTime * thefSpeed + sensorValue*multipier;
-            }
-            thefPositionX = Math.min(0.8f, Math.max(-0.8f, thefPositionX));
-        }*/
-
-
+        /*
         if (thebTouchOn) {
             if (thefPositionX < thefTouchX) {
                 thefPositionX += adElapsedTime * thefSpeed;
@@ -157,7 +146,7 @@ class MySpaceship {
                 thefPositionX -= adElapsedTime * thefSpeed;
             }
             thefPositionX = Math.min(0.8f, Math.max(-0.8f, thefPositionX));
-        }
+        }*/
     }
 
     public void touchOn(float x, float y) {

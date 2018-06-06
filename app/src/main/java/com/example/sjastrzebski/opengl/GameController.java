@@ -13,6 +13,7 @@ public class GameController  implements SensorEventListener {
     private SensorManager sensorManager2;
     Sensor accelerometer;
     Sensor accelerometer2;
+    private boolean pause;
     Game game;
 
     protected MySpaceship theMySpaceship = null;
@@ -31,23 +32,27 @@ public class GameController  implements SensorEventListener {
         accelerometer2 = sensorManager2.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager2.registerListener(this, accelerometer2, SensorManager.SENSOR_DELAY_NORMAL);
-        Log.d(TAG, "OnCreate: Registered accelerometer lisner");
+        Log.d(TAG, "OnCreate: Registered accelerometer listener");
+        pause = false;
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        Log.d(TAG,
-                "onSensorChanged: x: "
-                + sensorEvent.values[0]
-                + "Y: " + sensorEvent.values[1]
-                + "z: " + sensorEvent.values[2]);
+        if(!pause) {
+            Log.d(TAG,
+                    "onSensorChanged: x: "
+                            + sensorEvent.values[0]
+                            + "Y: " + sensorEvent.values[1]
+                            + "z: " + sensorEvent.values[2]);
 
-        xvalue = new vector3f(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);
+            xvalue = new vector3f(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);
 
-        if(theMySpaceship != null)
-            theMySpaceship.update(xvalue.x);
+            if (theMySpaceship != null)
+                theMySpaceship.update(xvalue.x);
 
-        //game.cam.setCameraAngle(sensorEvent.values[0]);
+
+            //game.cam.setCameraAngle(sensorEvent.values[0]);
+        }
     }
 
     @Override
@@ -55,4 +60,11 @@ public class GameController  implements SensorEventListener {
 
     }
 
+    public void onPause(){
+        pause = true;
+    }
+
+    public void onResume(){
+        pause = false;
+    }
 }

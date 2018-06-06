@@ -20,6 +20,7 @@ public class MyRenderer implements GLSurfaceView.Renderer {
 
     protected MyBackground theMyBackground;
     protected MySpaceship theMySpaceship;
+    protected MyObstacleSpawner spawner;
 
     public MyRenderer(Context aContext) {
         theContext = aContext;
@@ -35,6 +36,9 @@ public class MyRenderer implements GLSurfaceView.Renderer {
         gc = new GameController(theContext, theMySpaceship);
 
         theMyBackground = new MyBackground(theContext);
+
+        spawner = new MyObstacleSpawner(theContext);
+        spawner.initialize();
 
         thelStartTime = System.nanoTime();
         thedLastTimestep = 0.0;
@@ -56,12 +60,14 @@ public class MyRenderer implements GLSurfaceView.Renderer {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
         theMyBackground.update(adCurrentTime, adElapsedTime);
+        spawner.update();
         //theMySpaceship.update(adCurrentTime, adElapsedTime, game.cam.getCameraAngle());
 
         theMyBackground.drawShape();
 
         GLES20.glEnable(GLES20.GL_BLEND);
         theMySpaceship.drawShape();
+        spawner.drawShapes();
         GLES20.glDisable(GLES20.GL_BLEND);
 
 
@@ -74,5 +80,12 @@ public class MyRenderer implements GLSurfaceView.Renderer {
 
     public void touchOff() {
         theMySpaceship.touchOff();
+    }
+
+    public void onPause(){
+        gc.onPause();
+    }
+    public void onResume(){
+        gc.onResume();
     }
 }

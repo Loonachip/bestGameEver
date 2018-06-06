@@ -45,6 +45,18 @@ public class MySurfaceView extends GLSurfaceView {
         }
         return false;
     }
+
+    @Override
+    public void onPause(){
+        //theRenderer.onPause();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume(){
+        //theRenderer.onResume();
+        super.onResume();
+    }
 }
 
 
