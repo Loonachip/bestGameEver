@@ -71,6 +71,12 @@ public abstract class MyObstacle {
 
     public abstract void update();
 
+    public void setPosition(vector3f newPosition){
+        x = newPosition.x;
+        y = newPosition.y;
+        z = newPosition.z;
+    }
+
     private void initShapes() {
         float avfTriangleCoords[] = {
                 // X, Y, Z, tU,tV
