@@ -9,12 +9,12 @@ public class Meteorite extends MyObstacle {
 
     public Meteorite(Context c, int texture) {
         super(c, texture);
-        x = 0.0f;
-        y = -0.6f;
+
+
     }
 
     @Override
     public void update() {
-        //y -= speed;
+        y = y - speed;
     }
 }

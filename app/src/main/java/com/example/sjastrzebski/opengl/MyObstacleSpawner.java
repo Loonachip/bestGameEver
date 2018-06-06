@@ -10,7 +10,7 @@ class MyObstacleSpawner {
 
     private Context context;
     private LinkedList<MyObstacle> obstacles;
-
+    private double lastTime=0;
     public MyObstacleSpawner(Context aContext){
         context = aContext;
         obstacles = new LinkedList();
@@ -22,9 +22,19 @@ class MyObstacleSpawner {
         addObstacle(new Meteorite(context, R.drawable.obstacle));
     }
 
-    public void update(){
-        for (MyObstacle o: obstacles) {
-            o.update();
+    public void update(double timeElapsed){
+        for (int i=0;i<obstacles.size();i++) {
+            obstacles.get(i).update();
+            if(obstacles.get(i).y<-1.2f){
+                obstacles.remove(i);
+            }
+        }
+
+        if(timeElapsed-lastTime>2)
+        {
+            lastTime=timeElapsed;
+            addObstacle(new Meteorite(context, R.drawable.obstacle));
+            obstacles.getLast().setPosition(new vector3f((float) Math.random()*2-1,1.0f,0.0f));
         }
     }
 

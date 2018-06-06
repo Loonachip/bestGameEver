@@ -62,7 +62,7 @@ public class MyRenderer implements GLSurfaceView.Renderer {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
         theMyBackground.update(adCurrentTime, adElapsedTime);
-        spawner.update();
+        spawner.update(adCurrentTime);
         //theMySpaceship.update(adCurrentTime, adElapsedTime, game.cam.getCameraAngle());
 
         theMyBackground.drawShape();
