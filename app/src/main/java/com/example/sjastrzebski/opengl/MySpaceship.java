@@ -15,6 +15,9 @@ class MySpaceship {
 
     protected Context theContext;
 
+    public vector3f position;
+    public float thefSpeed = 0.6f;
+
     protected int thenProgram;
     protected int thenPositionHandle;
     protected int thenTextureHandle;
@@ -31,7 +34,6 @@ class MySpaceship {
     protected boolean thebTouchOn;
     protected float thefPositionX;
     protected float thefTouchX, thefTouchY;
-    public float thefSpeed = 0.6f;
 
     private final String thestrVertexShaderCode =
             "attribute vec4 vPosition;\n"
@@ -65,6 +67,8 @@ class MySpaceship {
 
         Matrix.setIdentityM(themScaleMatrix, 0);
         Matrix.scaleM(themScaleMatrix, 0, 0.1f, 0.1f, 1.0f);
+
+        position = new vector3f(0.0f, -0.7f, 0.0f);
 
         initShapes();
 
@@ -100,7 +104,7 @@ class MySpaceship {
         GLES20.glUniform1i(thenTextureHandle, 0);
 
         Matrix.setIdentityM(themMatrix, 0);
-        Matrix.translateM(themMatrix, 0, thefPositionX, -0.7f, 0.0f);
+        Matrix.translateM(themMatrix, 0, position.x, position.y, position.z);
         Matrix.multiplyMM(themMatrix, 0, themMatrix, 0, themScaleMatrix, 0);    //Skalowanie potem translacja
 
         //int location, int count, boolean transpose, float[] value, int offset
@@ -125,15 +129,16 @@ class MySpaceship {
 
 
     public void update(float sensorValue) {
-        float multipier = 1.0f / 10;
 
         Log.d("sensorValue",String.valueOf(sensorValue));
             if (sensorValue < -1) {
-                thefPositionX += thefSpeed + sensorValue*multipier;
+                thefPositionX += thefSpeed;
             } else if (sensorValue > 1) {
-                thefPositionX -= thefSpeed + sensorValue*multipier;
+                thefPositionX -= thefSpeed;
             }
             thefPositionX = Math.min(0.8f, Math.max(-0.8f, thefPositionX));
+
+        position.x = thefPositionX;
 
     }
 

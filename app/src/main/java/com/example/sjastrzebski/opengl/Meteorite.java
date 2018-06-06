@@ -15,7 +15,6 @@ public class Meteorite extends MyObstacle {
 
     @Override
     public void update() {
-        //Log.d("obstacle", "\nx: " +x+ "\ny:" +y+ "\nz:" +z);
         //y -= speed;
     }
 }

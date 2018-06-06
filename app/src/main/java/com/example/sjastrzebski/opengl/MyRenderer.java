@@ -4,13 +4,13 @@ package com.example.sjastrzebski.opengl;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.util.Log;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 public class MyRenderer implements GLSurfaceView.Renderer {
 
-    private Game game;
     private GameController gc;
 
     protected Context theContext;
@@ -21,6 +21,7 @@ public class MyRenderer implements GLSurfaceView.Renderer {
     protected MyBackground theMyBackground;
     protected MySpaceship theMySpaceship;
     protected MyObstacleSpawner spawner;
+    protected Collider collider;
 
     public MyRenderer(Context aContext) {
         theContext = aContext;
@@ -34,6 +35,7 @@ public class MyRenderer implements GLSurfaceView.Renderer {
 
         theMySpaceship = new MySpaceship(theContext);
         gc = new GameController(theContext, theMySpaceship);
+        collider = new Collider();
 
         theMyBackground = new MyBackground(theContext);
 
@@ -65,13 +67,14 @@ public class MyRenderer implements GLSurfaceView.Renderer {
 
         theMyBackground.drawShape();
 
+
         GLES20.glEnable(GLES20.GL_BLEND);
         theMySpaceship.drawShape();
         spawner.drawShapes();
         GLES20.glDisable(GLES20.GL_BLEND);
 
-
         thedLastTimestep = adCurrentTime;
+        collider.update(theMySpaceship.position, spawner.getPositions(), adCurrentTime);
     }
 
     public void touchOn(float x, float y) {

@@ -39,4 +39,15 @@ class MyObstacleSpawner {
         }
     }
 
+    public LinkedList<vector3f> getPositions(){
+        LinkedList<vector3f> pos = new LinkedList<vector3f>();
+
+        for (MyObstacle o: obstacles) {
+            pos.add(new vector3f(o.x, o.y, o.z));
+        }
+
+        return pos;
+    }
+
+
 }
