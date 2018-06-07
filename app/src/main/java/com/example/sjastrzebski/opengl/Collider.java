@@ -19,11 +19,12 @@ public class Collider {
         //Log.d("player", "\nx: " +playerPos.x+ "\ny:" +playerPos.y+ "\nz:" +playerPos.z);
     }
 
-    public void update(vector3f ship, LinkedList<vector3f> obstacles, double time){
+    public void update(vector3f ship, LinkedList<vector3f> obstacles, double time) {
         playerPos = ship;
         obstaclesPos = obstacles;
         score = time;
         onUpdate();
-    }
 
+      //  if(obstacles.equals(obstacles.get(y)))
+    }
 }
