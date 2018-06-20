@@ -28,68 +28,29 @@ public class Collider {
         obstaclesPos = obstacles;
         score = time;
         onUpdate();
-        double x=0;
-        double y=0;
+
+        double xb=0;
+        double yb=0;
+        double xa=ship.x;
+        double ya=ship.y;
+
 
         for (int i=0;i<obstacles.size();i++) {
-            x = obstacles.get(i).x;
-            y = obstacles.get(i).y;
-        }
-        double x1=ship.x;
-        double y1=ship.y;
-        double x2=x1+0.1;
-        double y2=y1+0.1;
-        double x3=x1-0.1;
-        double y3=y1-0.1;
-        if(x < x1 && y < y1){
-            Intent myIntent = new Intent(context, MainMenu.class);
-            myIntent.putExtra("SCORE", score);
-            context.startActivity(myIntent);
-        }
-        if(x < x2 && y < y1){
-            Intent myIntent = new Intent(context, MainMenu.class);
-            myIntent.putExtra("SCORE", score);
-            context.startActivity(myIntent);
-        }
-        if(x < x3 && y < y1){
-            Intent myIntent = new Intent(context, MainMenu.class);
-            myIntent.putExtra("SCORE", score);
-            context.startActivity(myIntent);
-        }
-        if(x < x2 && y < y1){
-            Intent myIntent = new Intent(context, MainMenu.class);
-            myIntent.putExtra("SCORE", score);
-            context.startActivity(myIntent);
-        }
-        if(x < x1 && y < y2){
-            Intent myIntent = new Intent(context, MainMenu.class);
-            myIntent.putExtra("SCORE", score);
-            context.startActivity(myIntent);
-        }
-        if(x < x2 && y < y2){
-            Intent myIntent = new Intent(context, MainMenu.class);
-            myIntent.putExtra("SCORE", score);
-            context.startActivity(myIntent);
-        }
-        if(x < x3 && y == y2){
-            Intent myIntent = new Intent(context, MainMenu.class);
-            myIntent.putExtra("SCORE", score);
-            context.startActivity(myIntent);
-        }
-        if(x < x1 && y == y3){
-            Intent myIntent = new Intent(context, MainMenu.class);
-            myIntent.putExtra("SCORE", score);
-            context.startActivity(myIntent);
-        }
-        if(x < x2 && y == y3){
-            Intent myIntent = new Intent(context, MainMenu.class);
-            myIntent.putExtra("SCORE", score);
-            context.startActivity(myIntent);
-        }
-        if(x < x3 && y == y3){
-            Intent myIntent = new Intent(context, MainMenu.class);
-            myIntent.putExtra("SCORE", score);
-            context.startActivity(myIntent);
+            xb = obstacles.get(i).x;
+            yb = obstacles.get(i).y;
+
+
+            double dx = xb - xa;
+            double dy = yb - ya;
+
+            double dystans = Math.sqrt((dx * dx) + (dy * dy));
+            double sumaPromieni = 0.16;
+
+            if (dystans <= sumaPromieni) {
+                Intent myIntent = new Intent(context, MainMenu.class);
+                myIntent.putExtra("SCORE", score);
+                context.startActivity(myIntent);
+            }
         }
     }
 }

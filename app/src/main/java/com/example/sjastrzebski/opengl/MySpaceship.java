@@ -12,8 +12,8 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 class MySpaceship {
-    public float thefSpeed = 0.08f;
-    protected int movementFrameSkip = 8;
+    public float thefSpeed = 0.1f;
+    protected int movementFrameSkip = 0;
 
     protected Context theContext;
 
@@ -147,7 +147,9 @@ class MySpaceship {
 
             movementFramesSkipped = 0;
         }
-
+        else{
+            movementFramesSkipped ++;
+        }
     }
 
     public void update(double adCurrentTime, double adElapsedTime, float sensorValue) {
