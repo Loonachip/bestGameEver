@@ -5,7 +5,7 @@ import android.util.Log;
 
 public class Meteorite extends MyObstacle {
 
-    protected float speed = 0.08f;
+    protected float speed = 0.02f;
 
     public Meteorite(Context c, int texture) {
         super(c, texture);

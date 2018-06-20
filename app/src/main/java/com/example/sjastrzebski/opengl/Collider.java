@@ -39,9 +39,9 @@ public class Collider {
         float y1=ship.y;
 
         if( x == x1 && y == y1) {
-            Intent myIntent = new Intent(context, MainActivity.class);
+            Intent myIntent = new Intent(context, MainMenu.class);
+            myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
-            myIntent.putExtra("SCORE", time);
         }
     }
 }
