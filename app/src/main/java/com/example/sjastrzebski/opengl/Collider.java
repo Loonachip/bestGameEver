@@ -38,12 +38,10 @@ public class Collider {
         float x1=ship.x;
         float y1=ship.y;
 
-        if( x == x1 && y == y1){
-                Intent myIntent = new Intent(context, MainActivity.class);
-                context.startActivity(myIntent);
-                myIntent.putExtra("SCORE", tutaj jebnij score );
-                return ;
-            }
-            return ;
+        if( x == x1 && y == y1) {
+            Intent myIntent = new Intent(context, MainActivity.class);
+            context.startActivity(myIntent);
+            myIntent.putExtra("SCORE", time);
+        }
     }
 }
