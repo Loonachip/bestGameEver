@@ -24,66 +24,19 @@ public class Collider {
         obstaclesPos = obstacles;
         score = time;
         onUpdate();
-        float x=obstacles.get(x);
-        float y=obstacles.get(y);
-        float z=obstacles.get(z);
-        float x1=ship.(x);
-        float y1=ship.(y);
+        float x=0;
+        float y=0;
 
-        if(obstacles.equals( x && y == x1 && y1 )){
-
-
+        for (int i=0;i<obstacles.size();i++) {
+            x = obstacles.get(i).x;
+            y = obstacles.get(i).y;
         }
-     /*   bool Aabb::Collides(const Aabb & box) const {
-            if ( x && y == x1 && y1) {
-                return false;
+        float x1=ship.x;
+        float y1=ship.y;
+
+        if( x == x1 && y == y1){
+                return ;
             }
-            return true;
-        }
-        */
-     /*
-        bool check_collision( SDL_Rect A, SDL_Rect B )
-        {
-
-            int leftA, leftB;
-            int rightA, rightB;
-            int topA, topB;
-            int bottomA, bottomB;
-
-
-            leftA = A.x;
-            rightA = A.x + A.w;
-            topA = A.y;
-            bottomA = A.y + A.h;
-
-
-            leftB = B.x;
-            rightB = B.x + B.w;
-            topB = B.y;
-            bottomB = B.y + B.h;
-
-            if( bottomA <= topB )
-            {
-                return false;
-            }
-
-            if( topA >= bottomB )
-            {
-                return false;
-            }
-
-            if( rightA <= leftB )
-            {
-                return false;
-            }
-
-            if( leftA >= rightB )
-            {
-                return false;
-            }
-
-            return true;
-        }
-        */
+            return ;
     }
 }
