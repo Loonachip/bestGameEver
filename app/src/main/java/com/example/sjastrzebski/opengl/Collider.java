@@ -41,56 +41,55 @@ public class Collider {
         double y2=y1+0.1;
         double x3=x1-0.1;
         double y3=y1-0.1;
-        if(x == x1 && y == y1){
+        if(x < x1 && y < y1){
             Intent myIntent = new Intent(context, MainMenu.class);
             myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
         }
-        if(x == x2 && y == y1){
+        if(x < x2 && y < y1){
             Intent myIntent = new Intent(context, MainMenu.class);
             myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
         }
-        if(x == x3 && y == y1){
+        if(x < x3 && y < y1){
             Intent myIntent = new Intent(context, MainMenu.class);
             myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
         }
-        if(x == x2 && y == y1){
+        if(x < x2 && y < y1){
             Intent myIntent = new Intent(context, MainMenu.class);
             myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
         }
-        if(x == x1 && y == y2){
+        if(x < x1 && y < y2){
             Intent myIntent = new Intent(context, MainMenu.class);
             myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
         }
-        if(x == x2 && y == y2){
+        if(x < x2 && y < y2){
             Intent myIntent = new Intent(context, MainMenu.class);
             myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
         }
-        if(x == x3 && y == y2){
+        if(x < x3 && y == y2){
             Intent myIntent = new Intent(context, MainMenu.class);
             myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
         }
-        if(x == x1 && y == y3){
+        if(x < x1 && y == y3){
             Intent myIntent = new Intent(context, MainMenu.class);
             myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
         }
-        if(x == x2 && y == y3){
+        if(x < x2 && y == y3){
             Intent myIntent = new Intent(context, MainMenu.class);
             myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
         }
-        if(x == x3 && y == y3){
+        if(x < x3 && y == y3){
             Intent myIntent = new Intent(context, MainMenu.class);
             myIntent.putExtra("SCORE", score);
             context.startActivity(myIntent);
         }
-
     }
 }
