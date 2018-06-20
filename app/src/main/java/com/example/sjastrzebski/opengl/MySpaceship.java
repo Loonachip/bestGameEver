@@ -16,7 +16,7 @@ class MySpaceship {
     protected Context theContext;
 
     public vector3f position;
-    public float thefSpeed = 0.6f;
+    public float thefSpeed = 0.1f;
 
     protected int thenProgram;
     protected int thenPositionHandle;
