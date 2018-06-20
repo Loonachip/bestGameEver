@@ -12,11 +12,13 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 class MySpaceship {
+    public float thefSpeed = 0.08f;
+    protected int movementFrameSkip = 8;
 
     protected Context theContext;
 
     public vector3f position;
-    public float thefSpeed = 0.1f;
+    protected int movementFramesSkipped = 0;
 
     protected int thenProgram;
     protected int thenPositionHandle;
@@ -27,6 +29,7 @@ class MySpaceship {
     protected int thenTextureID;
 
     protected FloatBuffer theVB;
+
 
     protected float[] themScaleMatrix = new float[16];
     protected float[] themMatrix = new float[16];
@@ -130,7 +133,9 @@ class MySpaceship {
 
     public void update(float sensorValue) {
 
-        Log.d("sensorValue",String.valueOf(sensorValue));
+        if(movementFramesSkipped == movementFrameSkip) {
+
+            Log.d("sensorValue", String.valueOf(sensorValue));
             if (sensorValue < -1) {
                 thefPositionX += thefSpeed;
             } else if (sensorValue > 1) {
@@ -138,7 +143,10 @@ class MySpaceship {
             }
             thefPositionX = Math.min(0.8f, Math.max(-0.8f, thefPositionX));
 
-        position.x = thefPositionX;
+            position.x = thefPositionX;
+
+            movementFramesSkipped = 0;
+        }
 
     }
 
