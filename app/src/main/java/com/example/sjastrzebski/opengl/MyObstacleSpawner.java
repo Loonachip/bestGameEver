@@ -30,7 +30,7 @@ class MyObstacleSpawner {
             }
         }
 
-        if(timeElapsed-lastTime>2)
+        if(timeElapsed-lastTime>0.5)
         {
             lastTime=timeElapsed;
             addObstacle(new Meteorite(context, R.drawable.obstacle));
