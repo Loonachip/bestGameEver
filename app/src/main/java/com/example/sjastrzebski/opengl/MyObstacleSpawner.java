@@ -19,7 +19,7 @@ class MyObstacleSpawner {
 
 
     public void initialize(){
-        addObstacle(new Meteorite(context, R.drawable.obstacle));
+      //  addObstacle(new Meteorite(context, R.drawable.obstacle));
     }
 
     public void update(double timeElapsed){
