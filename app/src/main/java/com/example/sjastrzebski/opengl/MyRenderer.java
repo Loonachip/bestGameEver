@@ -35,7 +35,7 @@ public class MyRenderer implements GLSurfaceView.Renderer {
 
         theMySpaceship = new MySpaceship(theContext);
         gc = new GameController(theContext, theMySpaceship);
-        collider = new Collider();
+        collider = new Collider(theContext);
 
         theMyBackground = new MyBackground(theContext);
 

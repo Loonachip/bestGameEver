@@ -1,5 +1,7 @@
 package com.example.sjastrzebski.opengl;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.LinkedList;
@@ -9,8 +11,10 @@ public class Collider {
     protected vector3f playerPos;
     protected LinkedList<vector3f> obstaclesPos;
     protected double score;
+    protected Context context;
 
-    public Collider(){
+    public Collider(Context c){
+        this.context = c;
     }
 
     private void onUpdate(){
@@ -35,6 +39,9 @@ public class Collider {
         float y1=ship.y;
 
         if( x == x1 && y == y1){
+                Intent myIntent = new Intent(context, MainActivity.class);
+                context.startActivity(myIntent);
+                myIntent.putExtra("SCORE", tutaj jebnij score );
                 return ;
             }
             return ;
